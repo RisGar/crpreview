@@ -1,0 +1,13 @@
+name: crpreview
+version: 0.1.0
+
+authors:
+  - Rishab Garg <rishgarg@gmail.com>
+
+targets:
+  crpreview:
+    main: src/crpreview.cr
+
+crystal: 1.8.1
+
+license: MIT
