@@ -3,3 +3,6 @@
 /bin/
 /.shards/
 *.dwarf
+/build/
+
+.DS_Store
