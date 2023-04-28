@@ -19,19 +19,12 @@ jobs:
       - name: Install Dependencies on MacOS
         if: matrix.os == 'macos-latest'
         run: |
-          brew install chafa imagemagick
+          brew install chafa
 
       - name: Install Dependencies on Ubuntu
         if: matrix.os == 'ubuntu-latest'
         run: |
-          sudo apt-get install chafa imagemagick
-
-      - uses: MinoruSekine/setup-scoop@v1
-        if: matrix.os == 'windows-latest'
-      - name: Install Dependencies on Windows
-        if: matrix.os == 'windows-latest'
-        run: |
-          scoop install chafa imagemagick
+          sudo apt-get install libchafa-dev
 
       - uses: actions/checkout@v3
 
