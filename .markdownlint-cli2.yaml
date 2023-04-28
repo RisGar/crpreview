@@ -1,2 +1,6 @@
 ignores:
   - "LICENSE"
+config:
+  default: true
+  "no-hard-tabs": false
+  "no-trailing-spaces": false

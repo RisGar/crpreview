@@ -1,14 +1,14 @@
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
-  build-:
-    name: Install Crystal
+  build:
+    name: Build excecutable
     runs-on: ubuntu-latest
     steps:
-    - uses: crystal-lang/install-crystal@v1.8.0
-    - uses: actions/checkout@v3
-    - name: build executable
-      run: make
+      - uses: crystal-lang/install-crystal@v1.8.0
+      - uses: actions/checkout@v3
+      - name: Makefile
+        run: make

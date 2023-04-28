@@ -4,31 +4,19 @@ Preview script made for the [lf file manager](https://github.com/gokcehan/lf). M
 
 ## Previews
 
-| File type    | Tool       |
-| ------------ | ---------- |
-| archives[^1] | `tar`      |
-| markdown     | `glow`     |
-| images       | `chafa`    |
-| pdf          | `pdftoppm` |
-| text         | `bat`      |
+| File type    | Tool               |
+| ------------ | ------------------ |
+| archives[^1] | `tar (libarchive)` |
+| markdown     | `glow`             |
+| images       | `chafa`            |
+| pdf          | `pdftoppm`         |
+| text         | `bat`              |
 
 [^1]: Supported formats: `tar`, `7-zip`, `zip`, `bzip`,`bzip2`, `gunzip`, `xz`, `zstd`, `lzip`, `lrzip`
 
 ## Requirements
 
-In addition to the preview tools stated above, these are the platform specific requirements:
-
-### MacOS
-
-Nothing. It is however recommended, to install the tools above with `brew`.
-
-### GNU/\*
-
-- libarchive (bsdtar)
-
-### Windows
-
--> Use WSL2.
+- \*nix sytem or WSL2
 
 ## Installation
 
@@ -46,7 +34,11 @@ map i $ /path/to/crpreview/bin/crpreview $f | less -R
 
 ## Development
 
-TODO: Write development instructions here
+### Required C Libraries
+
+- chafa
+- imagemagick
+- glib2
 
 ## Contributing
 
@@ -59,3 +51,7 @@ TODO: Write development instructions here
 ## Contributors
 
 - [Rishab Garg](https://github.com/your-github-user) - creator and maintainer
+
+## Special Thanks To
+
+- [GuardKenzie](https://github.com/GuardKenzie) - Maintainer of [chafa.py](https://github.com/GuardKenzie/chafa.py), which my `MagickWand` bindings are based on

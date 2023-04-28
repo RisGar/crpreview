@@ -3,9 +3,14 @@ SRC_DIR := ./src
 NAME := crpreview
 SRCS := $(shell find $(SRC_DIR) -name '*.cr')
 
-$(BUILD_DIR)/crtangle: $(SRCS)
+$(BUILD_DIR)/$(NAME): $(SRCS)
 	mkdir -p $(BUILD_DIR)
-	crystal build $(SRC_DIR)/$(NAME).cr --no-debug --release --progress -o $(BUILD_DIR)/$(NAME)
+	crystal build $(SRC_DIR)/$(NAME).cr --no-debug --release -o $(BUILD_DIR)/$(NAME)
+
+.PHONY: dev
+dev: $(SRCS)
+	mkdir -p $(BUILD_DIR)
+	crystal build $(SRC_DIR)/$(NAME).cr --progress -o $(BUILD_DIR)/$(NAME)
 
 .PHONY: uninstall
 uninstall:
