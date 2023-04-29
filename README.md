@@ -1,8 +1,12 @@
 # crpreview
 
+![Build](https://github.com/RisGar/crpreview/actions/workflows/make.yml/badge.svg)
+
 Preview script made for the [lf file manager](https://github.com/gokcehan/lf). May work with other terminal file manageres after some configuration.
 
-## Previews
+## Features
+
+`crpreview` can preview files of the following formats:
 
 | File type    | Tool               |
 | ------------ | ------------------ |
@@ -34,10 +38,10 @@ map i $ /path/to/crpreview/bin/crpreview $f | less -R
 
 ## Development
 
-### Required C Libraries
+### Required Libraries
 
 - chafa
-- imagemagick
+- imagemagick (MagickWand)
 - glib2
 
 ## Contributing
@@ -51,7 +55,3 @@ map i $ /path/to/crpreview/bin/crpreview $f | less -R
 ## Contributors
 
 - [Rishab Garg](https://github.com/your-github-user) - creator and maintainer
-
-## Special Thanks To
-
-- [GuardKenzie](https://github.com/GuardKenzie) - Maintainer of [chafa.py](https://github.com/GuardKenzie/chafa.py), which my `MagickWand` bindings are based on
