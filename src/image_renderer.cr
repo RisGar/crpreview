@@ -21,6 +21,7 @@ module Crpreview
     end
   end
 
+  # Wrapper around `ChafaCanvas` with methods to create, draw and print images.
   class Canvas
     @canvas : LibChafa::ChafaCanvas*
 
@@ -28,8 +29,8 @@ module Crpreview
       @canvas = LibChafa.chafa_canvas_new(config.canvas_config)
     end
 
-    def draw_all_pixels(type : LibChafa::ChafaPixelType, pixels : Pointer(UInt8), width : Int32, height : Int32, rowstride : Int32)
-      LibChafa.chafa_canvas_draw_all_pixels(@canvas, type, pixels, width, height, rowstride)
+    def draw_all_pixels(pixels : Pointer(UInt8), width : Int32, height : Int32, rowstride : Int32)
+      LibChafa.chafa_canvas_draw_all_pixels(@canvas, LibChafa::ChafaPixelType::CHAFA_PIXEL_RGBA8_UNASSOCIATED, pixels, width, height, rowstride)
     end
 
     def print : String
@@ -41,6 +42,7 @@ module Crpreview
     end
   end
 
+  # Wrapper around `ChafaTermDb` with method to detect the terminal type.
   class TermDb
     @term_db : LibChafa::ChafaTermDb*
 
@@ -54,11 +56,11 @@ module Crpreview
     end
   end
 
-  class Loader
+  # Wrapper around `MagickWand` that opens and
+  class ImageData
     getter height : Int32
     getter width : Int32
     getter rowstride : Int32
-    getter pixel_type : LibChafa::ChafaPixelType
     property pixels : UInt8*
 
     def initialize(file_path : String)
@@ -75,8 +77,6 @@ module Crpreview
 
       LibMagick.export_pixels(wand, 0, 0, @width, @height,
         "RGBA".to_unsafe, LibMagick::StorageType::CharPixel, pixels)
-
-      @pixel_type = LibChafa::ChafaPixelType::CHAFA_PIXEL_RGBA8_UNASSOCIATED
     end
   end
 end

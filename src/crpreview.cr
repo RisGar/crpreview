@@ -1,7 +1,8 @@
 require "./image_renderer"
 
+# Main module for all code parsing input, processing files or binding to libraries.
 module Crpreview
-  # darwin/bsd or GNU syste` commands
+  # darwin/bsd or GNU system commands
   stat = ""
   tar = ""
   {% if flag?(:darwin) %}
@@ -10,7 +11,7 @@ module Crpreview
   {% elsif flag?(:bsd) %}
     stat = "stat -f '%N%i%T%z%B%m'"
     tar = "tar"
-  {% elsif flag?(:gnu) %}
+  {% elsif flag?(:linux) %}
     stat = "stat  --printf '%n%i%F%s%W%Y'"
     tar = "bsdtar"
   {% else %}
@@ -42,11 +43,9 @@ module Crpreview
     end
 
     def chafa(file_path : String)
-      config = CanvasConfig.new(@width, @height)
-      canvas = Canvas.new(config)
-      image = Loader.new(file_path)
-      canvas.draw_all_pixels(image.pixel_type, image.pixels, image.width, image.height, image.rowstride)
-
+      canvas = Canvas.new(CanvasConfig.new(@width, @height))
+      image = ImageData.new(file_path)
+      canvas.draw_all_pixels(image.pixels, image.width, image.height, image.rowstride)
       print canvas.print
     end
   end
@@ -62,6 +61,7 @@ module Crpreview
   end
 
   type = `file -b --mime-type "#{file}"`
+  puts type
 
   case type
   when /^image/
