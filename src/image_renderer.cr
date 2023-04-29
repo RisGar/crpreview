@@ -66,7 +66,7 @@ module Crpreview
     def initialize(file_path : String)
       LibMagick.genesis
       wand = LibMagick.new_wand
-      image = LibMagick.read_image(wand, file_path.to_unsafe)
+      LibMagick.read_image(wand, file_path.to_unsafe)
 
       @width = LibMagick.get_width(wand).to_i
       @height = LibMagick.get_height(wand).to_i

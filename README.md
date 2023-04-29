@@ -1,6 +1,6 @@
 # crpreview
 
-![Build](https://github.com/RisGar/crpreview/actions/workflows/make.yml/badge.svg)
+![Build](https://github.com/RisGar/crpreview/actions/workflows/make.yml/badge.svg) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a2be0c87738c456b91f7feabc4e0745d)](https://app.codacy.com/gh/RisGar/crpreview/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Preview script made for the [lf file manager](https://github.com/gokcehan/lf). May work with other terminal file manageres after some configuration.
 
