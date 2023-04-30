@@ -10,8 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # os: [macos-latest, ubuntu-latest] -> Fix ImageMagick not found by ld error
-        os: [macos-latest]
+        os: [macos-latest, ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -21,7 +20,7 @@ jobs:
       - name: Install Dependencies (MacOS)
         if: startsWith( matrix.os, 'macos')
         run: |
-          brew install chafa imagemagick
+          brew install chafa
 
       - name: Install Dependencies (Ubuntu)
         if: startsWith( matrix.os, 'ubuntu')

@@ -4,7 +4,7 @@ task:
   freebsd_instance:
     image_family: freebsd-13-2
 
-  install_script: pkg install -y crystal shards chafa imagemagick7-nox11
+  install_script: pkg install -y crystal shards chafa imagemagick7
   build_script: make
   bin_artifacts:
     path: ./bin/crpreview
