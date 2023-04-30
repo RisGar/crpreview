@@ -1,3 +1,5 @@
+name: Build exectuables and pack to artifacts
+
 on: push
 
 env:
@@ -5,8 +7,6 @@ env:
 
 jobs:
   build:
-    name: Build excecutables
-
     strategy:
       fail-fast: false
       matrix:
@@ -36,7 +36,8 @@ jobs:
       - name: Set SHA variable
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}-${{ env.GITHUB_SHA_SHORT }}
           path: ${{ env.BINARY_PATH }}
