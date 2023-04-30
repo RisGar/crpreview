@@ -1,6 +1,6 @@
 # TODO: Automated (complete) module typedefs
 module Crpreview
-  @[Link("magickwand")]
+  @[Link(ldflags: "`pkg-config --cflags --libs MagickWand`")]
   lib LibMagick
     struct MagickWand
       id : LibC::SizeT
