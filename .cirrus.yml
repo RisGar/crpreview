@@ -9,7 +9,7 @@ task:
   # No environment variables provided.
 
   # Instructions:
-  install_script: pkg install -y crystal shards chafa imagemagick
+  install_script: pkg install -y crystal shards chafa imagemagick7
   build_script: make
   bin_artifacts:
     path: ./bin/crpreview
