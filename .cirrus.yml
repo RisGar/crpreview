@@ -11,5 +11,5 @@ task:
   # Instructions:
   install_script: pkg install -y crystal shards chafa imagemagick
   build_script: make
-  build_artifacts:
+  bin_artifacts:
     path: ./bin/crpreview
