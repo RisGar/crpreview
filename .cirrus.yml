@@ -1,5 +1,5 @@
 task:
-  name: Build executables and pack to artifacts (FreeBSD)
+  name: FreeBSD
 
   freebsd_instance:
     image_family: freebsd-13-2

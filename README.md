@@ -1,6 +1,6 @@
 # crpreview
 
-![Build](https://github.com/RisGar/crpreview/actions/workflows/make.yml/badge.svg) ![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/RisGar/crpreview)
+[![Build](https://github.com/RisGar/crpreview/actions/workflows/make.yml/badge.svg)](https://nightly.link/RisGar/crpreview/workflows/make/master) ![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/RisGar/crpreview)
 
 Preview script made for the [lf file manager](https://github.com/gokcehan/lf). May work with other terminal file manageres after some configuration.
 
@@ -20,9 +20,23 @@ Preview script made for the [lf file manager](https://github.com/gokcehan/lf). M
 
 ## Requirements
 
-- \*nix sytem or WSL2
+Any of the above mentioned preview tools you wish to use.
 
 ## Installation
+
+### MacOS
+
+Download the [lastest build archive](https://nightly.link/RisGar/crpreview/workflows/make/master) and add it to a directory in your `$PATH`.
+
+### FreeBSD
+
+### Ubuntu
+
+Download the [lastest build archive](https://nightly.link/RisGar/crpreview/workflows/make/master) and add it to a directory in your `$PATH`.
+
+Don't forget to install the `libarchive` version of `tar`, as crpreview depends on it.
+
+### From source
 
 1. Build the executable using `make``
 2. Copy the path to this working directory on your system`

@@ -1,4 +1,4 @@
-name: Build exectuables and pack to artifacts
+name: MacOS & Ubuntu
 
 on: push
 
