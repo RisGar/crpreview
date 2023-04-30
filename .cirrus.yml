@@ -1,15 +1,10 @@
 task:
-  # Basic metadata:
   name: Build executables and pack to artifacts (FreeBSD)
 
-  # The build machine:
   freebsd_instance:
     image_family: freebsd-13-2
 
-  # No environment variables provided.
-
-  # Instructions:
-  install_script: pkg install -y crystal shards chafa imagemagick7
+  install_script: pkg install -y crystal shards chafa imagemagick7-nox11
   build_script: make
   bin_artifacts:
     path: ./bin/crpreview
