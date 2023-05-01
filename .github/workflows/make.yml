@@ -25,7 +25,7 @@ jobs:
       - name: Install Dependencies (Ubuntu)
         if: startsWith( matrix.os, 'ubuntu')
         run: |
-          sudo apt-get install -y libchafa-dev libmagickwand-dev imagemagick
+          sudo apt-get install -y chafa
 
       - uses: actions/checkout@v3
 
