@@ -22,7 +22,7 @@ jobs:
         if: startsWith( matrix.os, 'macos')
         run: |
           brew install pkg-config chafa imagemagick libarchive
-          PKG_CONFIG_PATH="/usr/local/opt/libarchive/lib/pkgconfig" make
+          PKG_CONFIG_PATH=/usr/local/opt/libarchive/lib/pkgconfig:$PKG_CONFIG_PATH make
 
       - name: Install Dependencies & Build (Ubuntu)
         if: startsWith( matrix.os, 'ubuntu')

@@ -1,6 +1,6 @@
 # TODO: Automated (complete) module typedefs
 module Crpreview
-  @[Link(ldflags: "`pkg-config --cflags --libs libarchive`")]
+  @[Link("libarchive")]
   lib LibArchive
     type Archive = Void
     type ArchiveEntry = Void
