@@ -1,6 +1,10 @@
 module Crpreview
-  # Fix for Ubuntu & FreeBSD runners (manually use pkg-config)
-  @[Link(ldflags: "`pkg-config --cflags --libs MagickWand`")]
+  {% if flag?(:ci) %}
+    # Fix for Ubuntu & FreeBSD ci runners
+    @[Link(ldflags: "`pkg-config --cflags --libs MagickWand`")]
+  {% else %}
+    @[Link("magickwand")]
+  {% end %}
   lib LibMagick
     type MagickWand = Void
 

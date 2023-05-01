@@ -7,6 +7,11 @@ $(BUILD_DIR)/$(NAME): $(SRCS)
 	mkdir -p $(BUILD_DIR)
 	crystal build $(SRC_DIR)/$(NAME).cr --no-debug --release -o $(BUILD_DIR)/$(NAME)
 
+.PHONY: ci
+ci: $(SRCS)
+	mkdir -p $(BUILD_DIR)
+	crystal build $(SRC_DIR)/$(NAME).cr --no-debug --release -Dci -o $(BUILD_DIR)/$(NAME)
+
 .PHONY: dev
 dev: $(SRCS)
 	mkdir -p $(BUILD_DIR)

@@ -16,22 +16,19 @@ jobs:
 
     steps:
       - uses: crystal-lang/install-crystal@v1
+      - uses: actions/checkout@v3
 
-      - name: Install Dependencies (MacOS)
+      - name: Install Dependencies & Build (MacOS)
         if: startsWith( matrix.os, 'macos')
         run: |
           brew install pkg-config chafa imagemagick libarchive
-          brew link --force libarchive
+          PKG_CONFIG_PATH=/usr/local/opt/libarchive/lib/pkgconfig:$PKG_CONFIG_PATH make
 
-      - name: Install Dependencies (Ubuntu)
+      - name: Install Dependencies & Build (Ubuntu)
         if: startsWith( matrix.os, 'ubuntu')
         run: |
           sudo apt-get install -y libchafa-dev libmagickwand-dev libarchive-dev
-
-      - uses: actions/checkout@v3
-
-      - name: Make build
-        run: make
+          make ci
 
       - name: Set SHA variable
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
