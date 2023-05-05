@@ -21,5 +21,7 @@ module Crpreview
     fun get_height = MagickGetImageHeight(wand : MagickWand*) : LibC::SizeT
     fun export_pixels = MagickExportImagePixels(wand : MagickWand*, x : LibC::SSizeT, y : LibC::SSizeT, width : LibC::SizeT,
                                                 height : LibC::SizeT, map : LibC::Char*, storage : StorageType, pixels : Void*) : Bool
+    fun destroy_wand = DestroyMagickWand(wand : MagickWand*) : MagickWand*
+    fun wand_terminus = MagickWandTerminus : Void
   end
 end
