@@ -1,20 +1,19 @@
 require "./image"
 require "./archive"
 
-# Main module for all code parsing input, processing files or binding to libraries.
+# Parses the input and forwards it to the correct previewer.
 module Crpreview
   extend self
+  include Archive
+  include Image
 
-  if ARGV.size <= 0
-    exit 1
-  end
-
-  file = ARGV[0]
+  exit 1 if ARGV.size <= 0
 
   VERSION = "0.2.0"
-  USAGE   = "usage: crpreview [-v|--version] [-h|--help] [file]"
+  USAGE   = "usage: crpreview [-v|--version] [-h|--help] [FILE]"
+  FILE    = ARGV[0]
 
-  case file
+  case FILE
   when "-h" || "--help"
     print USAGE
     exit
@@ -25,37 +24,37 @@ module Crpreview
     exit
   end
 
-  if !File.exists?(file)
+  if !File.exists?(FILE)
     puts "ERROR: File does not exist."
     puts USAGE
     exit 1
   end
 
   # Overrides for endings not covered by mime-type
-  case file
+  case FILE
   when /.tar.lrz$/
-    print archive(file)
+    print archive(FILE)
     exit
   when /.md$/
-    # print `glow "#{file}"` -> Fix glow showing without colours
-    print `bat -pp --color always --wrap character --  "#{file}"`
+    # print `glow "#{FILE}"` -> Fix glow showing without colours
+    print `bat -pp --color always --wrap character --  "#{FILE}"`
     exit
   end
 
-  type = `file -b --mime-type "#{file}"`
+  type = `FILE -b --mime-type "#{FILE}"`
 
   case type
   when /^image/ # Images
-    print image(file)
+    print image(FILE)
   when /inode\/directory/ # Directories
-    print `exa -a --color=always --group-directories-first --icons "#{file}"`
+    print `exa -a --color=always --group-directories-first --icons "#{FILE}"`
   when /x-tar$|x-7z-compressed$|zip$|x-bzip$|x-bzip2$|gzip$|x-xz$|zstd$|x-lzip$/ # Archives
-    print archive(file)
+    print archive(FILE)
   when /application\/pdf/ # PDFs
-    print pdf(file)
+    print pdf(FILE)
   when /application\/octet-stream/ # Binaries
     print "binary data"
   else # Others (text, etc.)
-    print `bat -pp --color always --wrap character -- "#{file}"`
+    print `bat -pp --color always --wrap character -- "#{FILE}"`
   end
 end

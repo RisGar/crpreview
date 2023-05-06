@@ -1,5 +1,6 @@
+# Stores library bindings used to preview files.
 # TODO: Automated (complete) module typedefs
-module Crpreview
+module Clibs
   @[Link("libarchive")]
   lib LibArchive
     type Archive = Void

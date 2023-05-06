@@ -1,4 +1,4 @@
-module Crpreview
+module Clibs
   {% if flag?(:ci) %}
     # Fix for Ubuntu & FreeBSD ci runners
     @[Link(ldflags: "`pkg-config --cflags --libs MagickWand`")]

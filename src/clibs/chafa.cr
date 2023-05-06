@@ -1,5 +1,4 @@
-# TODO: Automated (complete) module typedefs
-module Crpreview
+module Clibs
   @[Link("glib-2.0")]
   lib GLib
     struct GString

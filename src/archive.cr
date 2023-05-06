@@ -1,9 +1,12 @@
 require "digest/md5"
 require "./clibs/archive"
 
-module Crpreview
+# Handles archive parsing and printing.
+module Archive
+  include Clibs
   alias Status = LibArchive::ArchiveStatus
 
+  # Returns the content of an archive by reading from cache or calling `#cache_archive` to generate the cache.
   def archive(file_name : String) : String
     s = File.info(file_name)
     hash = Digest::MD5.hexdigest do |ctx|
@@ -13,13 +16,14 @@ module Crpreview
     end
     cache = "#{ENV["HOME"]}/.cache/lf/archive.#{hash}"
     if !File.exists?(cache + ".txt")
-      archive_gen(file_name, cache + ".txt")
+      cache_archive(file_name, cache + ".txt")
     else
       File.read(cache + ".txt")
     end
   end
 
-  def archive_gen(file_name : String, cache_file : String) : String
+  # Generates the cache at a path for an archive and returns the string so the cache doesn't have to be read again.
+  def cache_archive(file_name : String, cache_file : String) : String
     archive = LibArchive.archive_read_new
     archive_entry = uninitialized LibArchive::ArchiveEntry*
 

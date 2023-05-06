@@ -2,7 +2,14 @@ require "digest/md5"
 require "./clibs/chafa"
 require "./clibs/magick"
 
-module Crpreview
+# Handles image and pdf parsing and printing.
+module Image
+  include Clibs
+
+  WIDTH  = ARGV.size > 2 ? ARGV[1].to_i - 5 : 160
+  HEIGHT = ARGV.size > 2 ? ARGV[2].to_i : 40
+
+  # Generates a preview image for a pdf specified by *file_name* and calls `#image` to print it.
   def pdf(file_name : String) : String
     s = File.info(file_name)
     hash = Digest::MD5.hexdigest do |ctx|
@@ -19,12 +26,10 @@ module Crpreview
     image(cache + ".jpg")
   end
 
+  # Prints an image specified by *file_name*.
   def image(file_name : String) : String
-    width = ARGV.size > 2 ? ARGV[1].to_i - 5 : 160
-    height = ARGV.size > 2 ? ARGV[2].to_i : 40
-
     canvas_config = LibChafa.chafa_canvas_config_new
-    LibChafa.chafa_canvas_config_set_geometry(canvas_config, width, height)
+    LibChafa.chafa_canvas_config_set_geometry(canvas_config, WIDTH, HEIGHT)
 
     canvas = LibChafa.chafa_canvas_new(canvas_config)
 
