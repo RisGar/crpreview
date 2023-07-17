@@ -24,8 +24,10 @@ module Clibs
     fun archive_read_open_filename(a : Archive*, filename : LibC::Char*, block_size : LibC::SizeT) : ArchiveStatus
     fun archive_read_next_header(a : Archive*, archive_entry : ArchiveEntry**) : ArchiveStatus
 
-    fun archive_entry_pathname_utf8(ArchiveEntry*) : LibC::Char*
-    fun archive_entry_size(e : ArchiveEntry*) : LibC::SizeT
+    fun archive_entry_pathname_utf8(e : ArchiveEntry*) : LibC::Char*
+    fun archive_entry_size(e : ArchiveEntry*) : Int64
     fun archive_entry_stat(e : ArchiveEntry*) : LibC::Stat*
+    fun archive_entry_strmode(e : ArchiveEntry*) : LibC::Char*
+    fun archive_entry_mtime(e : ArchiveEntry*) : Int64 # (time_t)
   end
 end
