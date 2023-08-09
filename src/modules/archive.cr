@@ -1,6 +1,6 @@
 require "digest/md5"
 require "colorize"
-require "./clibs/archive"
+require "../libs/archive"
 
 # Handles archive parsing and printing.
 module Archive
@@ -56,7 +56,7 @@ module Archive
         s.humanize
       end
     }
-    sizes_width = sizes_raw.map(&.size).max
+    sizes_width = sizes_raw.max_of(&.size)
     sizes_colorised = sizes_raw.map { |s|
       case s
       when "-"

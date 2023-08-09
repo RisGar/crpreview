@@ -17,11 +17,6 @@ $(BUILD_DIR)/$(NAME): $(SRCS) clean
 clean:
 	rm -rf $(CACHE_DIR)/*
 
-.PHONY: ci
-ci: $(SRCS)
-	mkdir -p $(BUILD_DIR)
-	crystal build $(SRC_DIR)/$(NAME).cr --no-debug --release -Dci -o $(BUILD_DIR)/$(NAME)
-
 .PHONY: dev
 dev: $(SRCS)
 	mkdir -p $(BUILD_DIR)

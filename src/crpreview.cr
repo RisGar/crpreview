@@ -1,5 +1,5 @@
-require "./image"
-require "./archive"
+require "./modules/image"
+require "./modules/archive"
 
 # Parses the input and forwards it to the correct previewer.
 module Crpreview
