@@ -47,33 +47,33 @@ module Archive
       mtimes.push LibArchive.archive_entry_mtime(archive_entry)
     end
 
-    sizes_raw = sizes.map_with_index { |s, i|
+    sizes_raw = sizes.map_with_index { |size, i|
       if strmodes[i].starts_with?("d")
         "-"
-      elsif s < 1000
-        s.humanize(precision: 0, significant: false)
+      elsif size < 1000
+        size.humanize(precision: 0, significant: false)
       else
-        s.humanize
+        size.humanize
       end
     }
     sizes_width = sizes_raw.max_of(&.size)
-    sizes_colorised = sizes_raw.map { |s|
-      case s
+    sizes_colorised = sizes_raw.map { |size|
+      case size
       when "-"
-        s.colorize(:light_gray).to_s
+        size.colorize(:light_gray).to_s
       when .ends_with?(/[^0-9]/)
-        s.rchop.colorize(:light_green).to_s + s[-1].colorize(:green).to_s
+        size.rchop.colorize(:light_green).to_s + size[-1].colorize(:green).to_s
       else
-        s.colorize(:light_green).to_s
+        size.colorize(:light_green).to_s
       end
     }
 
-    mtimes_colorised = mtimes.map { |t|
+    mtimes_colorised = mtimes.map { |time|
       now = Time.local.to_unix
-      if t < now - HALF_YEAR || t > now + HALF_YEAR
-        Time.unix(t).to_s(format: "%e %b  %Y").colorize(:blue).to_s
+      if time < now - HALF_YEAR || time > now + HALF_YEAR
+        Time.unix(time).to_s(format: "%e %b  %Y").colorize(:blue).to_s
       else
-        Time.unix(t).to_s(format: "%e %b %H:%M").colorize(:blue).to_s
+        Time.unix(time).to_s(format: "%e %b %H:%M").colorize(:blue).to_s
       end
     }
 
