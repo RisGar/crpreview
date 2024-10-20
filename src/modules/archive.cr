@@ -17,7 +17,7 @@ module Archive
       ctx.update s.size.to_s
       ctx.update s.modification_time.to_unix.to_s
     end
-    cache = "#{ENV["HOME"]}/.cache/crpreview/archive.#{hash}"
+    cache = "#{ENV["HOME"]}/.cache/crpreview/archive-#{hash}"
     if !File.exists?(cache + ".txt")
       cache_archive(file_name, cache + ".txt")
     else
