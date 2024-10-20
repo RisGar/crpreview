@@ -8,7 +8,7 @@ module Crpreview
   include Image
 
   if ARGV.size == 0
-    print `exa -aF1 --color=always --group-directories-first --icons`
+    print `eza -aF1 --color=always --group-directories-first --icons`
     exit
   end
 
@@ -50,7 +50,7 @@ module Crpreview
   when /^image/ # Images
     print image(FILE)
   when /inode\/directory/ # Directories
-    print `exa -aF1 --color=always --group-directories-first --icons "#{FILE}"`
+    print `eza -aF1 --color=always --group-directories-first --icons "#{FILE}"`
   when /x-tar$|x-7z-compressed$|zip$|x-bzip$|x-bzip2$|gzip$|x-xz$|zstd$|x-lzip$/ # Archives
     print archive(FILE)
   when /application\/pdf/ # PDFs
