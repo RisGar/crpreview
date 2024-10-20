@@ -1,8 +1,8 @@
 # crpreview
 
-[![GH Build](https://github.com/RisGar/crpreview/actions/workflows/make.yml/badge.svg)](https://github.com/RisGar/crpreview/actions/workflows/make.yml) [![Cirrus CI Build](https://api.cirrus-ci.com/github/RisGar/crpreview.svg?task=FreeBSD)](https://cirrus-ci.com/github/RisGar/crpreview/master)
+[![GH Build](https://github.com/RisGar/crpreview/actions/workflows/make.yml/badge.svg)](https://github.com/RisGar/crpreview/actions/workflows/make.yml)
 
-Previews files and directories in the terminal. Built work with the [lf file manager](https://github.com/gokcehan/lf).
+Previews files and directories in the [lf file manager](https://github.com/gokcehan/lf) on macOS.
 
 ## Features
 
@@ -25,12 +25,18 @@ All of the above mentioned preview tools which you want to use.
 
 ## Installation
 
-### MacOS
+### Binary
 
 Install directly from my brew tap:
 
 ```console
 $ brew install RisGar/tap/crpreview
+```
+
+### From Source
+
+```console
+$ make
 ```
 
 ## Usage
@@ -51,7 +57,3 @@ Make sure to install the required decompressors for `libarchive` to list archive
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-
-## Contributors
-
-- [Rishab Garg](https://github.com/RisGar) - creator and maintainer

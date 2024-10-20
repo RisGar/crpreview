@@ -10,12 +10,15 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: crystal-lang/install-crystal@v1
-      - uses: actions/checkout@v4
+      - name: Download source
+        uses: actions/checkout@v4
+
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
 
       - name: Install Dependencies & Build
         run: |
-          brew install pkg-config chafa imagemagick libarchive
+          brew install pkg-config libarchive
           PKG_CONFIG_PATH=/usr/local/opt/libarchive/lib/pkgconfig:$PKG_CONFIG_PATH make
 
       - name: Set SHA variable

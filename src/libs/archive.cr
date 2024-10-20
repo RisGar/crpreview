@@ -1,5 +1,4 @@
 # Stores library bindings used to preview files.
-# TODO: Automated (complete) module typedefs
 module Clibs
   @[Link("libarchive")]
   lib LibArchive
