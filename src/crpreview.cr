@@ -54,7 +54,7 @@ module Crpreview
     print `eza -aF1 --color=always --group-directories-first --icons "#{FILE}"`
   when /x-tar$|x-7z-compressed$|zip$|x-bzip$|x-bzip2$|gzip$|x-xz$|zstd$|x-lzip$/ # Archives
     print archive(FILE)
-  when /application\/ql/ # PDFs
+  when /application\/pdf/ # PDFs
     print ql(FILE)
   when /application\/octet-stream/ # Binaries
     print "binary data"
