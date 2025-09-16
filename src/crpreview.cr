@@ -22,7 +22,7 @@ module Crpreview
     exit
   when "-v" || "--version"
     puts "crpreview #{VERSION}"
-    puts "Copyright (C) 2023 Rishab Garg"
+    puts "Copyright (C) #{Time.utc.year} Rishab Garg"
     puts "Licensed under the EUPL-1.2"
     exit
   end
@@ -30,6 +30,7 @@ module Crpreview
   if !File.exists?(FILE)
     puts "ERROR: File does not exist."
     puts USAGE
+
     exit 1
   end
 
@@ -39,26 +40,27 @@ module Crpreview
     print archive(FILE)
     exit
   when /.md$/
-    # print `glow "#{FILE}"` -> Fix glow showing without colours
-    print `bat -pp --color always --wrap character --  "#{FILE}"`
-    # print ql(FILE)
+    print `bat -pp --color always --wrap character -- "#{FILE}"`
     exit
   end
 
-  type = `FILE -b --mime-type "#{FILE}"`
+  type = `file -b --mime-type "#{FILE}"`
 
   case type
-  when /^image/ # Images
-    print image(FILE)
   when /inode\/directory/ # Directories
     print `eza -aF1 --color=always --group-directories-first --icons "#{FILE}"`
+  when /^image/ # Images
+    print image(FILE)
   when /x-tar$|x-7z-compressed$|zip$|x-bzip$|x-bzip2$|gzip$|x-xz$|zstd$|x-lzip$/ # Archives
     print archive(FILE)
-  when /application\/pdf/ # PDFs
+  when /application\/pdf/, /^video/ # pdfs & videos
     print ql(FILE)
-  when /application\/octet-stream/ # Binaries
-    print "binary data"
+  when /application\/octet-stream/ # binaries
+    print `hexdump -C #{FILE}`
+  when /inode\/x-empty/
+    print "Empty file"
   else # Others (text, etc.)
+    print type
     print `bat -pp --color always --wrap character -- "#{FILE}"`
   end
-end
+end # TODO: clear old cache files

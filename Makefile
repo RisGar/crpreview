@@ -1,8 +1,19 @@
+# Set cache dir
+ifndef XDG_CACHE_DIR
+	XDG_CACHE_DIR = $(HOME)/.cache
+endif
+CACHE_DIR := $(XDG_CACHE_DIR)/crpreview
+
+# Set other variables
 BUILD_DIR := ./bin
 SRC_DIR := ./src
-CACHE_DIR := ~/.cache/crpreview
 NAME := crpreview
 SRCS := $(shell find $(SRC_DIR) -name '*.cr')
+
+TRASH_CMD := $(shell command -v trash 2> /dev/null)
+ifndef TRASH_CMD
+	TRASH_CMD := rm -rf
+endif
 
 ifeq ($(shell uname), Darwin)
 export PKG_CONFIG_PATH := /opt/homebrew/opt/libarchive/lib/pkgconfig
@@ -15,7 +26,7 @@ $(BUILD_DIR)/$(NAME): $(SRCS) clean
 
 .PHONY: clean
 clean:
-	rm -rf $(CACHE_DIR)/*
+	-$(TRASH_CMD) $(CACHE_DIR)
 
 .PHONY: dev
 dev: $(SRCS)
@@ -25,7 +36,7 @@ dev: $(SRCS)
 
 .PHONY: uninstall
 uninstall:
-	rm -rf $(BUILD_DIR)
+	-$(TRASH_CMD) $(BUILD_DIR)
 
 .PHONY: docs
 docs: $(SRCS)
